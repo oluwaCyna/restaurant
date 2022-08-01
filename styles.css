@@ -481,6 +481,7 @@ footer {
     width: 50px;
     border: 1px solid var(--main-bg);
     background-color: #f3f5ff;
+    text-align: center;
 }
 
 .category-btn {
@@ -526,3 +527,12 @@ footer {
     background-color: var(--other-color-2);
     color: var(--other-color-1);
 }
+
+/* Cart */
+/* .cart-action {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 30px;
+} */

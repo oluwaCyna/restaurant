@@ -4,10 +4,10 @@
     </div>
     <nav class="" id="nav">
         <ul>
-            <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="index.php">Home</a></li>
             <li class="nav-item"><a class="nav-link" href="market.php">Market</a></li>
-            <li class="nav-item"><a class="nav-link" href="/">Login/Register</a></li>
-            <li class="nav-item"><a class="nav-link" href="">Contact</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Login/Register</a></li>
+            <li class="nav-item"><a class="nav-link" href="cart.php">Cart</a></li>
         </ul>
     </nav>
 </div>
