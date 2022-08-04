@@ -1,0 +1,91 @@
+.account
+{
+    font-size: 1.4em;
+    font-weight: 500;
+    display: flex;
+    justify-content: center;
+}
+.account a
+{
+padding-left: 0.4em;
+}
+
+.btn
+{
+    border: none;
+    background: #ff1a1a;
+    color: white;
+}
+.btn:hover
+{
+    border: none;
+    background: #ff1a1a;
+    color: white;
+}
+
+
+
+
+
+/* body{
+    margin:0;
+    padding:0;
+    font-family:'montserrat';
+    background:#e3e9f7;
+} */
+
+.logo{
+    padding:20px;
+}
+
+
+/* .wrapper{
+    margin-left:160px;
+} */
+
+.section{
+    display:grid;
+    place-items:center;
+    min-height:100vh;
+    text-align:center;
+}
+
+.box-area h2{
+    text-transform:uppercase;
+    font-size:30px;
+}
+
+.topnav
+{
+    display: flex;
+    justify-content: flex-end;
+    background: #ff9999;
+}
+.topnav img
+{
+border-radius: 50%;
+}
+
+/* @media screen and (max-width: 600px)
+{
+    nav ul{
+        margin:0;
+        padding:0;
+        height:100%;
+        width:160px;
+        position:fixed;
+        top:0;
+        left:0;
+        background-color:#e60000;
+    }
+
+    .wrapper{
+        margin-left:60px;
+    }
+} */
+
+.just
+{
+    display: flex;
+    justify-content: center;
+}

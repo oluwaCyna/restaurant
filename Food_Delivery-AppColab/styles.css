@@ -1,0 +1,538 @@
+/* general */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-color: #3C3C3C;
+    --secondary-color: #FF2A2C;
+    --other-color-1: #ffffff;
+    --other-color-2: #000000;
+    --main-bg: #f2f2f2;
+
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    background-color: var(--main-bg);
+}
+
+h1 {
+    font-size: 50px;
+    font-weight: bold;
+    font-family: 'Poppins', sans-serif;
+}
+
+h2 {
+    font-size: 40px;
+    font-weight: bold;
+    font-family: 'Poppins', sans-serif;
+}
+
+h3 {
+    font-size: 30px;
+    font-family: 'Poppins', sans-serif;
+}
+
+h4 {
+    font-size: 25px;
+    font-family: 'Poppins', sans-serif;
+}
+
+h5 {
+    font-size: 20px;
+    font-family: 'Poppins', sans-serif;
+}
+
+h6 {
+    font-size: 16px;
+    font-family: 'Poppins', sans-serif;
+}
+
+p {
+    font-size: 16px;
+}
+
+.spacer {
+    padding: 50px;
+}
+/* header */
+#header {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    top: 0;
+    height: 100px;
+    background-color: var(--other-color-1);
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+
+#logo {
+    height: 100%;
+    width: 100%; 
+}
+
+#nav {
+    width: 100%;
+    text-align: end;
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px;
+}
+
+.nav-item {
+    display: inline-block;
+    list-style-type: none;
+    padding: 20px 30px;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: var(--other-color-2);
+}
+
+.nav-link:hover {
+    color: var(--secondary-color);
+}
+
+.nav-link:active {
+    color: var(--primary-color);
+}
+
+/* SECTIONS */
+/* Hero Section */
+#hero {
+    height: 85vh;
+    width: 100%;
+    position: relative;
+    background-image: url('https://wallpaperaccess.com/full/271726.jpg');
+    background-repeat: no-repeat;
+    background-position: 0 60%;
+    background-size: cover;
+}
+
+#hero img {
+    height: 100%;
+    width: 100%;
+}
+
+#hero-text {
+    position: absolute;
+    width: 30%;
+    top: 15%;
+    left: 20%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: start;
+    gap: 40px;
+    color: var(--other-color-1);
+    font-family: 'Poppins', sans-serif;
+}
+
+form {
+    width: 600px;
+}
+
+.input {
+    height: 50px;
+    width: 75%;
+}
+
+.btn {
+    width: 100px;
+    height: 100%;
+    padding: 15px;
+    color: var(--primary-color);
+    background-color: var(--secondary-color);
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    border: 1px solid var(--primary-color);
+    border-radius: 5px;
+}
+
+#submit:hover {
+    background-color: var(--primary-color);
+    color: var(--other-color-1);
+}
+
+/* Category Section */
+.section-container {
+    background-color: var(--other-color-1);
+}
+
+.container {
+    margin: 0 20%;
+    padding: 50px 0;
+}
+
+.container h6 {
+    color: var(--secondary-color);
+}
+
+.section-head-container {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.section-head-container h3 {
+    color: var(--secondary-color);
+}
+
+.line {
+    width: 30px;
+    height: 2px;
+    background-color: var(--secondary-color);
+    color: var(--secondary-color);
+    border-width:0;
+}
+
+.line2 {
+    width: 3px;
+    height: 2px;
+    background-color: var(--secondary-color);
+    color: var(--secondary-color);
+    border-width:0;
+}
+
+.line-group {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 5px;
+}
+
+.category-list {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.category-card-text {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Meal Section */
+.meal-list {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.meal-card {
+    height: 350px;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.meal-card-text {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    bottom: 25px;
+}
+
+.meal-card-image img {
+    z-index: 4;
+    position: absolute;
+    top: 67px;
+    left: 25%;
+}
+
+.meal-card-div {
+    z-index: 3;
+    height: 100px;
+    width: 298px;
+    position: absolute;
+    top: 90px;
+    left: 0;
+    background-color: var(--secondary-color);
+    opacity: 30%;
+    transition: opacity 2s;
+}
+
+.meal-card-div2 {
+    z-index: 4;
+    height: 100px;
+    width: 0px;
+    position: absolute;
+    top: 90px;
+    left: 0;
+    background-color: var(--secondary-color);
+    transition: width 0.5s;
+}
+
+.meal-card-div3 {
+    z-index: 4;
+    height: 100px;
+    width: 0px;
+    position: absolute;
+    top: 90px;
+    right: 0;
+    background-color: var(--secondary-color);
+    transition: width 0.5s;
+}
+
+.meal-card:hover .meal-card-div2 {
+    width: 149px;
+}
+
+.meal-card:hover .meal-card-div3 {
+    width: 149px;
+}
+
+/* Team List */
+.team-list {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.team-card {
+    height: 540px;
+    width: 350px;
+    align-items: center;
+    background-color: var(--main-bg);
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+.team-card-text {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 15px;
+}
+
+.team-card-text h6 {
+    color: var(--other-color-2);
+}
+
+.team-card-text p {
+    color: var(--primary-color);
+}
+
+.team-card:hover .team-card-text {
+    background-color: var(--other-color-1);
+}
+
+.team-card:hover .team-card-text h6 {
+    color: var(--secondary-color);
+}
+
+.team-card:hover {
+    box-shadow: rgba(0, 0, 0, 0.24) 2px 3px 8px;
+}
+
+/* Hpw it works */
+#how {
+    background-image: url('https://wallpapercave.com/dwp1x/wp3094970.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    height: 40vh;
+    width: 100%;
+    position: relative;
+}
+
+#team-header {
+    position: absolute;
+    top: 50px;
+    left: 40%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    justify-content: center;
+    align-items: center;
+}
+
+.how-list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 1000px;
+    position: absolute;
+    bottom: -150px;
+    left: 25%;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.how-card {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    justify-content: start;
+    align-items: flex-start;
+    padding: 30px;
+    background-color: var(--other-color-1);
+}
+
+.how-card:nth-child(2) {
+    border-left: 1px solid #3C3C3C;
+    border-right: 1px solid #3C3C3C;
+}
+
+.how-icon {
+    font-size: 100px;
+    color: var(--secondary-color);
+}
+
+/* Footer */
+footer {
+    background-color: black;
+    margin-top: 200px;
+}
+#footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    padding-top: 50px;
+}
+#footer-note {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    
+}
+#payment-icon{
+    display: flex;
+    gap: 10px;
+    justify-content: flex-start;
+    align-items: baseline;
+}
+
+/* PRODUCT PAGE */
+.grid-container {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    column-gap: 30px;
+    margin: 50px 20% 0;
+}
+
+#product-container {
+    background-color: var(--other-color-1);
+    border-radius: 10px;
+    padding: 30px;
+}
+
+.other-section {
+    background-color: var(--other-color-1);
+    border-radius: 10px;
+    padding: 30px;
+
+}
+
+.product-head-container {
+    display: block;
+    padding: 20px 0;
+}
+
+.category-button-group {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+#product-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+}
+
+.product-img-header {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    width: 70%;
+}
+
+.product-input {
+    height: 40px;
+    width: 50px;
+    border: 1px solid var(--main-bg);
+    background-color: #f3f5ff;
+    text-align: center;
+}
+
+.category-btn {
+    width: 200px;
+    height: 50px;
+    padding: 10px;
+    background-color: var(--main-bg);
+    color: var(--other-color-2);
+    border: none;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.category-btn:hover {
+    background-color: var(--other-color-2);
+    color: var(--other-color-1);
+}
+
+.category-btn:active {
+    background-color: var(--other-color-2);
+    color: var(--other-color-1);
+}
+
+.order-btn {
+    width: 150px;
+    height: 40px;
+    padding: 10px;
+    background-color: var(--secondary-color);
+    color: var(--other-color-2);
+    border: none;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.order-btn:hover {
+    background-color: var(--other-color-2);
+    color: var(--other-color-1);
+}
+
+.order-btn:active {
+    background-color: var(--other-color-2);
+    color: var(--other-color-1);
+}
+
+/* Cart */
+/* .cart-action {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 30px;
+} */
