@@ -68,7 +68,7 @@
                 <div class="cart-action" id="cart-action">
                 <button type="submit" class="order-btn" id="submit" name="submit">Update Cart</button>
                 <button type="submit" class="order-btn" id="submit" name="submit">Clear Cart</button>
-                <button type="submit" class="order-btn" id="submit" name="submit">Check Out</button> 
+                <a type="button" class="order-btn" id="submit" name="submit" href="checkout.php">Check Out</a> 
                 </div>
 
             </div>
