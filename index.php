@@ -10,6 +10,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&family=Poppins:wght@100;200;300&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="img/food-point-logo-symbol-and-icon-template-to-show-the-location-of-the-food-seller-vector.webp">
 </head>
 
 <body>
@@ -232,7 +233,7 @@
 
 
                 <div class="team-card" id="">
-                    <img src="https://i.ibb.co/tm0C0Gm/use-Copy.jpg" height="450" width="350" alt="Team Image" />
+                    <img src="img/f801ba69-12a5-4934-a463-d69a25500d02.jpg" height="450" width="350" alt="Team Image" />
                     <div class="team-card-text">
                         <h6>Category Name</h6>
                         <p>description</p>
@@ -288,11 +289,9 @@
         <div class="container p-0" id="footer">
             <div>
                 <h4>Main Menu</h4>
-                <p>Lorem ipsum </p>
-                <p>Lorem ipsum </p>
-                <p>Lorem ipsum </p>
-                <p>Lorem ipsum </p>
-                <p>Lorem ipsum </p>
+                <p><a style=" text-decoration: none; color: white; font-weight: 700;"  href="market.php">Snacks</a> </p>
+                <p><a style=" text-decoration: none; color: white; font-weight: 700;"  href="market.php">Swallow</a> </p>
+                <p><a style=" text-decoration: none; color: white; font-weight: 700;"  href="market.php">Normal</a> </p>
             </div>
             <div>
                 <h4>Knowledgr Base</h4>
@@ -304,11 +303,11 @@
             </div>
             <div>
                 <h4>Useful Links</h4>
-                <p>Lorem ipsum </p>
-                <p>Lorem ipsum </p>
-                <p>Lorem ipsum </p>
-                <p>Lorem ipsum </p>
-                <p>Lorem ipsum </p>
+                <p><a style=" text-decoration: none; color: white; font-weight: 700;"  href="index.php">Home</a> </p>
+                <p><a style=" text-decoration: none; color: white; font-weight: 700;"  href="market.php">Market</a> </p>
+                <p><a style=" text-decoration: none; color: white; font-weight: 700;"  href="cart.php">Cart</a> </p>
+                <p><a style=" text-decoration: none; color: white; font-weight: 700;"  href="profile.php">Profile</a> </p>
+                <p><a style=" text-decoration: none; color: white; font-weight: 700;"  href="logout.php">Logout</a> </p>
             </div>
             <div>
                 <h4>Contact Us</h4>
