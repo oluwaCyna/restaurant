@@ -187,3 +187,37 @@ function initMapp() {
       },
     });
   }
+
+
+  /* MY ACCOUNT PAGE */
+  function showProfile() {
+    document.getElementById("account-title").innerText = "My Profile";
+    document.getElementById("profile").style.display = "block";
+    document.getElementById("update-profile").style.display = "none";
+    document.getElementById("order-history").style.display = "none";
+    document.getElementById("track-order").style.display = "none";
+  }
+
+  function showUpdateProfile() {
+    document.getElementById("account-title").innerText = "Update Profile";
+    document.getElementById("profile").style.display = "none";
+    document.getElementById("update-profile").style.display = "block";
+    document.getElementById("order-history").style.display = "none";
+    document.getElementById("track-order").style.display = "none";
+  }
+
+  function showOrderHistory() {
+    document.getElementById("account-title").innerText = "Order History";
+    document.getElementById("profile").style.display = "none";
+    document.getElementById("update-profile").style.display = "none";
+    document.getElementById("order-history").style.display = "block";
+    document.getElementById("track-order").style.display = "none";
+  }
+
+  function showTrackOrder() {
+    document.getElementById("account-title").innerText = "Track Order";
+    document.getElementById("profile").style.display = "none";
+    document.getElementById("update-profile").style.display = "none";
+    document.getElementById("order-history").style.display = "none";
+    document.getElementById("track-order").style.display = "block";
+  }
