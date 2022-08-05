@@ -536,3 +536,48 @@ footer {
     flex-wrap: wrap;
     gap: 30px;
 } */
+
+/* CHECKOUT PAGE */
+.delivey-input {
+    height: 40px;
+    width: 70%;
+    border: 1px solid var(--main-bg);
+    background-color: #f3f5ff;
+    text-align: center;
+}
+
+.payment-btn {
+    width: 150px;
+    height: 40px;
+    padding: 10px;
+    background-color: var(--secondary-color);
+    color: var(--other-color-2);
+    border: none;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.payment-btn:hover {
+    background-color: var(--other-color-2);
+    color: var(--other-color-1);
+}
+
+.payment-btn:active {
+    background-color: var(--other-color-2);
+    color: var(--other-color-1);
+}
+
+/* Map */
+/* Check out map */
+#map {
+    height: 400px;
+    width: 100%;
+  }
+
+/* Delivery map */
+#map2 {
+    height: 400px;
+    width: 100%;
+  }
+
