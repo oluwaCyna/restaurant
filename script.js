@@ -217,7 +217,53 @@ function initMapp() {
   function showTrackOrder() {
     document.getElementById("account-title").innerText = "Track Order";
     document.getElementById("profile").style.display = "none";
-    document.getElementById("update-profile").style.display = "none";
-    document.getElementById("order-history").style.display = "none";
+    document.getElementById("add-dispach").style.display = "none";
+    document.getElementById("incoming-order").style.display = "none";
     document.getElementById("track-order").style.display = "block";
+  }
+
+  /* ADMIN DASHBOARD PAGE */
+  function showFoodPoint() {
+    document.getElementById("admin-title").innerText = "Dashboard";
+    document.getElementById("food-point").style.display = "block";
+    document.getElementById("add-dispatch").style.display = "none";
+    document.getElementById("dispatch-list").style.display = "none";
+    document.getElementById("incoming-order").style.display = "none";
+    document.getElementById("track-dispatch").style.display = "none";
+  }
+
+  function showAddDispatch() {
+    document.getElementById("admin-title").innerText = "Add Dispatch";
+    document.getElementById("food-point").style.display = "none";
+    document.getElementById("add-dispatch").style.display = "block";
+    document.getElementById("dispatch-list").style.display = "none";
+    document.getElementById("incoming-order").style.display = "none";
+    document.getElementById("track-dispatch").style.display = "none";
+  }
+
+  function showIncomingOrder() {
+    document.getElementById("admin-title").innerText = "Incoming Order";
+    document.getElementById("food-point").style.display = "none";
+    document.getElementById("add-dispatch").style.display = "none";
+    document.getElementById("dispatch-list").style.display = "none";
+    document.getElementById("incoming-order").style.display = "block";
+    document.getElementById("track-dispatch").style.display = "none";
+  }
+
+  function showTrackDispatch() {
+    document.getElementById("admin-title").innerText = "Track Dispatch";
+    document.getElementById("food-point").style.display = "none";
+    document.getElementById("add-dispatch").style.display = "none";
+    document.getElementById("dispatch-list").style.display = "none";
+    document.getElementById("incoming-order").style.display = "none";
+    document.getElementById("track-dispatch").style.display = "block";
+  }
+
+  function showDispatchList() {
+    document.getElementById("admin-title").innerText = "Dispatch List";
+    document.getElementById("food-point").style.display = "none";
+    document.getElementById("add-dispatch").style.display = "none";
+    document.getElementById("dispatch-list").style.display = "block";
+    document.getElementById("incoming-order").style.display = "none";
+    document.getElementById("track-dispatch").style.display = "none";
   }
