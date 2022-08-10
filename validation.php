@@ -161,7 +161,7 @@ class LoginInfo extends login
     protected $host = "localhost";
     protected $root = "root";
     protected $password = "";
-    protected $dbase = "Food_App";
+    protected $dbase = "resturant";
     
 
 

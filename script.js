@@ -1,5 +1,18 @@
 function hideCheckout() {
-    document.getElementById("payment-btn").style.display = "none";
+  document.getElementById("payment-btn").style.display = "none";
+}
+let newCart = JSON.parse(localStorage.getItem('cart'));
+for (let i = 0; i < newCart.length; i++) {
+  var checkoutContent = `
+  <div class="checkout-card">
+    <p>--> ${newCart[i].quantity}no of ${newCart[i].name} at a total price of $${newCart[i].price}</p>
+  </div>`
+
+  var checkoutRow = document.createElement('div')
+  checkoutRow.classList.add('chackout-card')
+  checkoutRow.innerHTML = checkoutContent
+  document.getElementsByClassName('checkout-group-container')[0].append(checkoutRow)
+
 }
 
 let searchBox;
@@ -217,8 +230,8 @@ function initMapp() {
   function showTrackOrder() {
     document.getElementById("account-title").innerText = "Track Order";
     document.getElementById("profile").style.display = "none";
-    document.getElementById("add-dispach").style.display = "none";
-    document.getElementById("incoming-order").style.display = "none";
+    document.getElementById("update-profile").style.display = "none";
+    document.getElementById("order-history").style.display = "none";
     document.getElementById("track-order").style.display = "block";
   }
 
@@ -226,6 +239,7 @@ function initMapp() {
   function showFoodPoint() {
     document.getElementById("admin-title").innerText = "Dashboard";
     document.getElementById("food-point").style.display = "block";
+    document.getElementById("upload-product").style.display = "none";
     document.getElementById("add-dispatch").style.display = "none";
     document.getElementById("dispatch-list").style.display = "none";
     document.getElementById("incoming-order").style.display = "none";
@@ -235,6 +249,7 @@ function initMapp() {
   function showAddDispatch() {
     document.getElementById("admin-title").innerText = "Add Dispatch";
     document.getElementById("food-point").style.display = "none";
+    document.getElementById("upload-product").style.display = "none";
     document.getElementById("add-dispatch").style.display = "block";
     document.getElementById("dispatch-list").style.display = "none";
     document.getElementById("incoming-order").style.display = "none";
@@ -244,6 +259,7 @@ function initMapp() {
   function showIncomingOrder() {
     document.getElementById("admin-title").innerText = "Incoming Order";
     document.getElementById("food-point").style.display = "none";
+    document.getElementById("upload-product").style.display = "none";
     document.getElementById("add-dispatch").style.display = "none";
     document.getElementById("dispatch-list").style.display = "none";
     document.getElementById("incoming-order").style.display = "block";
@@ -253,6 +269,7 @@ function initMapp() {
   function showTrackDispatch() {
     document.getElementById("admin-title").innerText = "Track Dispatch";
     document.getElementById("food-point").style.display = "none";
+    document.getElementById("upload-product").style.display = "none";
     document.getElementById("add-dispatch").style.display = "none";
     document.getElementById("dispatch-list").style.display = "none";
     document.getElementById("incoming-order").style.display = "none";
@@ -262,8 +279,207 @@ function initMapp() {
   function showDispatchList() {
     document.getElementById("admin-title").innerText = "Dispatch List";
     document.getElementById("food-point").style.display = "none";
+    document.getElementById("upload-product").style.display = "none";
     document.getElementById("add-dispatch").style.display = "none";
     document.getElementById("dispatch-list").style.display = "block";
     document.getElementById("incoming-order").style.display = "none";
     document.getElementById("track-dispatch").style.display = "none";
   }
+
+  function showUploadProduct() {
+    document.getElementById("admin-title").innerText = "Upload Product";
+    document.getElementById("food-point").style.display = "none";
+    document.getElementById("upload-product").style.display = "block";
+    document.getElementById("add-dispatch").style.display = "none";
+    document.getElementById("dispatch-list").style.display = "none";
+    document.getElementById("incoming-order").style.display = "none";
+    document.getElementById("track-dispatch").style.display = "none";
+  }
+
+  /* CATEGORY PAGE */
+  function showCategories() {
+    document.getElementById("category-title").innerText = "All Products";
+    document.getElementById("all-products").style.display = "block";
+    document.getElementById("cereals").style.display = "none";
+    document.getElementById("drinks").style.display = "none";
+    document.getElementById("fruits").style.display = "none";
+    document.getElementById("swallow").style.display = "none";
+  }
+  
+  function showCereals() {
+    document.getElementById("category-title").innerText = "Cereals";
+    document.getElementById("all-products").style.display = "none";
+    document.getElementById("cereals").style.display = "block";
+    document.getElementById("drinks").style.display = "none";
+    document.getElementById("fruits").style.display = "none";
+    document.getElementById("swallow").style.display = "none";
+  }
+
+  function showDrinks() {
+    document.getElementById("category-title").innerText = "Drinks";
+    document.getElementById("all-products").style.display = "none";
+    document.getElementById("cereals").style.display = "none";
+    document.getElementById("drinks").style.display = "block";
+    document.getElementById("fruits").style.display = "none";
+    document.getElementById("swallow").style.display = "none";
+  }
+
+  function showFruits() {
+    document.getElementById("category-title").innerText = "Fruits";
+    document.getElementById("all-products").style.display = "none";
+    document.getElementById("cereals").style.display = "none";
+    document.getElementById("drinks").style.display = "none";
+    document.getElementById("fruits").style.display = "block";
+    document.getElementById("swallow").style.display = "none";
+  }
+
+  function showSwallow() {
+    document.getElementById("category-title").innerText = "Swallow";
+    document.getElementById("all-products").style.display = "none";
+    document.getElementById("cereals").style.display = "none";
+    document.getElementById("drinks").style.display = "none";
+    document.getElementById("fruits").style.display = "none";
+    document.getElementById("swallow").style.display = "block";
+  }
+
+
+  /* CART PAGE */
+
+if (document.readyState == 'loading') {
+  document.addEventListener('DOMContentLoaded', ready)
+} else {
+  ready()
+}
+
+function ready() {
+  var removeCartItemButtons = document.getElementsByClassName('cart-remove-btn')
+  for (var i = 0; i < removeCartItemButtons.length; i++) {
+      var button = removeCartItemButtons[i]
+      button.addEventListener('click', removeCartItem)
+  }
+
+  var quantityInputs = document.getElementsByClassName('cart-quantity-input')
+  for (var i = 0; i < quantityInputs.length; i++) {
+      var input = quantityInputs[i]
+      input.addEventListener('change', quantityChanged)
+  }
+
+  var addToCartButtons = document.getElementsByClassName('order-btn')
+  for (var i = 0; i < addToCartButtons.length; i++) {
+      var button = addToCartButtons[i]
+      button.addEventListener('click', addToCartClicked)
+  }
+  document.getElementsByClassName('purchase-btn')[0].addEventListener('click', purchaseClicked)
+}
+
+let cartList = [];
+
+function purchaseClicked() {
+  // alert('Thank you for your purchase')
+  var cartFinalItems = document.getElementsByClassName('cart-group')[0]
+  var cartFinalRows = cartFinalItems.getElementsByClassName('cart-card')
+  for (var i = 0; i < cartFinalRows.length; i++) {
+      var cartFinalRow = cartFinalRows[i]
+      var priceFinalPrice =  parseFloat(cartFinalRow.getElementsByClassName('cart-price')[0].innerText.replace('$', ''))
+      var productFinalTitle = cartFinalRow.getElementsByClassName('cart-item-title')[0].innerText
+      var productFinalQuantity = cartFinalRow.getElementsByClassName('cart-quantity-input')[0].value
+      var productFinalId = cartFinalRow.getElementsByClassName('cart-id-input')[0].value
+      const cartFinalData = {
+        id: productFinalId,
+        name: productFinalTitle,
+        price: priceFinalPrice,
+        quantity: productFinalQuantity,
+      }
+      cartList.push(cartFinalData);
+  }
+  localStorage.setItem('cart', JSON.stringify(cartList));
+
+  window.location.href = "/delivery/checkout.php";
+  while (cartFinalItems.hasChildNodes()) {
+      cartFinalItems.removeChild(cartFinalItems.firstChild)
+  }
+  updateCartTotal()
+}
+
+// function sendToCheckout(data) {
+//   var checkoutContent = `
+//   <h5>You want to check out the following</h5>
+//   <div class="checkout-card" index="${item.id}">
+//     <h6>${item.quantity}</h6>
+//     <h6>${item.name}</h6>
+//     <h6>${item.price}</h6>
+//   </div>`
+//   document.getElementsByClassName('checkout-group-container')[0].innerHTML =  data.forEach(item => {checkoutContent})
+// }
+// console.log(cartList)
+
+function removeCartItem(event) {
+  var buttonClicked = event.target
+  buttonClicked.parentElement.remove()
+  updateCartTotal()
+}
+
+function quantityChanged(event) {
+  var input = event.target
+  if (isNaN(input.value) || input.value <= 0) {
+      input.value = 1
+  }
+  updateCartTotal()
+}
+
+
+function addToCartClicked(event) {
+  var button = event.target
+  var shopItem = button.parentElement
+  var title = shopItem.getElementsByClassName('product-item-title')[0].innerText
+  var price = shopItem.getElementsByClassName('product-item-price')[0].innerText
+  var productId = shopItem.getElementsByClassName('product-input')[0].value
+  var imageSrc = shopItem.getElementsByClassName('product-item-image')[0].src
+  addItemToCart(title, price, imageSrc,productId)
+  updateCartTotal()
+}
+
+function addItemToCart(title, price, imageSrc, productId) {
+  var cartRow = document.createElement('div')
+  cartRow.classList.add('cart-card')
+  var cartItems = document.getElementsByClassName('cart-group')[0]
+  var cartItemNames = cartItems.getElementsByClassName('cart-item-title')
+  for (var i = 0; i < cartItemNames.length; i++) {
+      if (cartItemNames[i].innerText == title) {
+          alert('This item is already added to the cart')
+          return
+      }
+  }
+  var cartRowContents = `
+    <div class='cart-img-header'>
+    <img src='${imageSrc}' height='100' width='100' alt='Product Image' />
+    <div class='cart-card-text'>
+        <h6 class="cart-item-title">${title}</h6>
+        <p class="cart-price">${price}</p>
+    </div>
+  </div>
+  <input type='hidden' class='cart-id-input' value='${productId}'/>
+  <input type='number' class='cart-quantity-input' value='1'/>
+  <button type='button' class='cart-remove-btn'>REMOVE</button>
+  <hr />`
+  cartRow.innerHTML = cartRowContents
+  cartItems.append(cartRow)
+  cartRow.getElementsByClassName('cart-remove-btn')[0].addEventListener('click', removeCartItem)
+  cartRow.getElementsByClassName('cart-quantity-input')[0].addEventListener('change', quantityChanged)
+}
+
+function updateCartTotal() {
+  var cartItemContainer = document.getElementsByClassName('cart-group')[0]
+  var cartRows = cartItemContainer.getElementsByClassName('cart-card')
+  var total = 0
+  for (var i = 0; i < cartRows.length; i++) {
+      var cartRow = cartRows[i]
+      var priceElement = cartRow.getElementsByClassName('cart-price')[0]
+      var quantityElement = cartRow.getElementsByClassName('cart-quantity-input')[0]
+      var price = parseFloat(priceElement.innerText.replace('$', ''))
+      var quantity = quantityElement.value
+      total = total + (price * quantity)
+  }
+  total = Math.round(total * 100) / 100
+  document.getElementsByClassName('cart-total-price')[0].innerText = '$' + total
+}

@@ -26,7 +26,7 @@
 
             <div class="" id="product-list">
                 <div class="product-head-container">
-                    <h2>Check Out (2)</h2>
+                    <h2>Check Out</h2>
                     <div class="line-group">
                         <hr class="line" />
                         <hr class="line2" />
@@ -35,21 +35,15 @@
                     </div>
                 </div>
                 <hr />
-                <div class="product-group">
+                <div class="checkout-group-container">
                 <h5>You want to check out the following</h5>
-
-                    <div id="product-card">
-                        <div class="product-img-header">
-                            <p>2</p>
-                            <div class="product-card-text">
-                                <h6>Product Name</h6>
-                                
-                            </div>
-                        </div>
-                        <p><s>$300</s> $700</p>
-                       
+                    <div class="checkout-card">
+                        <h6></h6>
+                        <h6></h6>
+                        <h6></h6>
                     </div>
                 </div>
+                <br />
                 <hr />
 
                 <div class="product-group">

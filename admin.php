@@ -15,11 +15,13 @@
 
 <body onload="showFoodPoint();">
     <header class="" id="wrapper">
-        <?php include_once "navigation.php" ?>
+        <?php include_once "navigation.php";
+        include_once "script.php" ?>
     </header>
     <div class="account-grid-container account-page-height">
         <div class="other-section account-list">
             <h5 class="account-link" onclick="showFoodPoint();"><a class="account-anchor-link" href="#food-point">Food Point</a></h5>
+            <h5 class="account-link" onclick="showUploadProduct();"><a class="account-anchor-link" href="#upload-product">Upload Product</a></h5>
             <h5 class="account-link" onclick="showAddDispatch();"><a class="account-anchor-link" href="#add-dispatch">Add Dispatch</a></h5>
             <h5 class="account-link" onclick="showDispatchList();"><a class="account-anchor-link" href="#dispatch-list">Dispatch List</a></h5>
             <h5 class="account-link" onclick="showIncomingOrder();"><a class="account-anchor-link" href="#incoming-order">Incoming Order</a></h5>
@@ -65,6 +67,39 @@
                             <h6>PENDING ORDER: </h6><p><?php ?></p>
                         </div>
                     </div>
+                </div>
+                <div class="update-profile" id="upload-product">
+                    <form method="post" action="admin.php" enctype="multipart/form-data">
+                    <div class="form-grp">
+                    <label for="product-name">Product Name:</label>
+                    <input type="text" class="account-input" id="product-name" name="product-name">
+                    </div>
+
+                    <div class="form-grp">
+                    <label for="product-image">Product Image:</label>
+                    <input type="file" class="account-input" id="product-image" name="product-image" >
+                    </div>
+
+                    <div class="form-grp">
+                    <label for="product-price">Product Price:</label>
+                    <input type="number" class="account-input" id="product-price" name="product-price" >
+                    </div>
+
+                    <div class="form-grp">
+                    <label for="product-category">Product Category:</label>
+                    <select class="account-input" id="product-category" name="product-category">
+                    <option disabled selected>Category</option>
+                    <option value="Drinks">Drinks</option>
+                    <option value="Cereals">Cereals</option>
+                    <option value="Swallow">Swallow</option>
+                    <option value="Fruits">Fruits</option>
+                    </select>
+                    </div>
+
+                    <div class="form-grp">
+                        <button type="submit" class="order-btn" id="upload-product-btn" name="upload-product-btn">UPLOAD</button>
+                    </div>
+                    </form>
                 </div>
                 <div class="update-profile" id="add-dispatch">
                     <form method="post" action="">
