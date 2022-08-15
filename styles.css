@@ -404,7 +404,7 @@ form {
 }
 
 /* Footer */
-footer {
+/* footer {
     background-color: black;
     margin-top: 200px;
 }
@@ -414,7 +414,7 @@ footer {
     align-items: center;
     color: white;
     padding-top: 50px;
-}
+} */
 #footer-note {
     display: flex;
     justify-content: space-between;
@@ -704,6 +704,58 @@ footer {
   }
 
 /* Account page */
+#bk {
+    position: absolute;
+    z-index: 3;
+    background-color: var(--other-color-1);
+    width: 100%;
+    height: 100%;
+}
+/* Center the loader */
+#loader {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    z-index: 5;
+    width: 100px;
+    height: 100px;
+    margin: -76px 0 0 -76px;
+    border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid #3498db;
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+  }
+  
+  @-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  /* Add animation to "page content" */
+  .animate-bottom {
+    position: relative;
+    -webkit-animation-name: animatebottom;
+    -webkit-animation-duration: 1s;
+    animation-name: animatebottom;
+    animation-duration: 1s
+  }
+  
+  @-webkit-keyframes animatebottom {
+    from { bottom:-100px; opacity:0 } 
+    to { bottom:0px; opacity:1 }
+  }
+  
+  @keyframes animatebottom { 
+    from{ bottom:-100px; opacity:0 } 
+    to{ bottom:0; opacity:1 }
+  }
+
 .account-grid-container {
     display: grid;
     grid-template-columns: 1fr 3fr;
@@ -714,6 +766,10 @@ footer {
 .account-page-height {
     height: 70vh;
 }
+/* #account-page {
+    display: none;
+
+} */
 
 .account-link {
     padding: 15px 0;
@@ -741,6 +797,27 @@ footer {
     color: var(--secondary-color);
 }
 
+.track-btn {
+    width: 200px;
+    height: 50px;
+    padding: 10px;
+    background-color: var(--main-bg);
+    color: var(--other-color-2);
+    border: none;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.track-btn:hover {
+    background-color: var(--other-color-2);
+    color: var(--other-color-1);
+}
+
+.track-btn:active {
+    background-color: var(--other-color-2);
+    color: var(--other-color-1);
+}
 /* My Profile */
 .profile {
     display: flex;
@@ -792,4 +869,8 @@ table {
 table, th, td {
     border-bottom: 1px solid black;
     border-collapse: collapse;
+    text-align: center;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 15px;
+    padding: 5px;
   }

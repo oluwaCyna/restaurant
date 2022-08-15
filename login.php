@@ -1,23 +1,8 @@
+
 <?php
-  //  include_once "validation.php";
-
-if (isset($_POST['login'])) {
-  $_SESSION["Lemail"] = $_POST['email'];
-  $_SESSION["Lpass"] = $_POST['password'];
-
-    $validation = new login($_POST);
-    $errors = $validation->validateform();
-
-  //  $login = new LoginInfo;
-
-
-
-} 
-
-
-
-
-?>
+    include_once "validation.php";
+    include_once 'script.php'; 
+  ?>
 
 
 <!doctype html>
@@ -42,11 +27,11 @@ if (isset($_POST['login'])) {
     <img width="70%" src="img/istockphoto-1220524110-612x612.jpg" alt="">
           
     </div>
-    <form class="col-md-6" method="POST" action="userAccount.php">
+    <form class="col-md-6" method="POST" action="login.php">
                 <!-- email -->
                 <div class="mb-3"> 
     <div class="input-group">
-  <input type="email" class="form-control" name="EMAIL" placeholder="email"  aria-label="email"  aria-describedby="basic-addon2" >
+  <input type="email" class="form-control" name="email" placeholder="email"  aria-label="email"  aria-describedby="basic-addon2" >
   <span class="input-group-text" id="basic-addon2">Email</span> 
 </div>
   <span class="text-danger" style="font-weight: 500">
@@ -57,7 +42,7 @@ if (isset($_POST['login'])) {
                   <!-- Password -->
                   <div class="mb-3"> 
     <div class="input-group">
-  <input type="password" class="form-control" name="PASSWORD" placeholder="password"  aria-label="password"  aria-describedby="basic-addon2" >
+  <input type="password" class="form-control" name="password" placeholder="password"  aria-label="password"  aria-describedby="basic-addon2" >
   <span class="input-group-text" id="basic-addon2">Password</span> 
 </div>
   <span class="text-danger" style="font-weight: 500">
@@ -66,12 +51,13 @@ if (isset($_POST['login'])) {
     </div>
 
     <div class="d-grid gap-2 col-12">
-      <button type="submit" name="login"  class="btn">SignUp</button>
+      <button type="submit" name="login"  class="btn">Log in</button>
     </div>
 
 </form>
     </div>
   </div>
+  <?php include_once "footer.php" ?>
     <!-- Bootstrap JavaScript Libraries -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
 

@@ -1,33 +1,7 @@
 <?php
     include_once "validation.php";
-
-if (isset($_POST['submit'])) {
-// GETTING VALUE FROM INPUT;
-$_SESSION["fname"] = $fname = $_POST['fullname'];
-$_SESSION["email"] = $email = $_POST['email'];
-$phone = $_POST['phone'];
-$password = $_POST['password'];
-
-    $validation = new SignUp($_POST);
-    $errors = $validation->validateform();
-
- $my_db = new Database();
-
-    //Insert into database;
-    $sql = $my_db->insert($fname, $email, $phone, $password);
-
-    if($sql)
-{
-header('location: index.php');
-}
-else
-{
-echo "<script>alert('Data not SUBMITED');</script>";
- }
-}
-
-?>
-
+    include_once 'script.php'; 
+  ?>
 
 <!doctype html>
 <html lang="en">
@@ -44,14 +18,15 @@ echo "<script>alert('Data not SUBMITED');</script>";
 
   </head>
   <body>
-<div class="container col-md-12 mt-5">
-<p class="mb-4 account">Already have an <a href="login.php">account?</a></p> 
+<div class="container mt-5 mx-auto">
+<p class="mb-4 account">Already have an <a href="login.php">account?</a></p>
   <div class="row">
     <div class="col-md-6">
-    <img width="70%" src="img/istockphoto-1220524110-612x612.jpg" alt="">
+    <img height="100%" src="img/istockphoto-1220524110-612x612.jpg" alt="">
           
     </div>
-    <form class="col-md-6" method="POST" action="">
+    <div class="col-md-6 d-flex justify-content-center align-items-center bg-light">
+    <form class="w-100"  method="POST" action="registration.php" enctype="multipart/form-data">
            
                  <!-- fullname -->
                  <div class="mb-3"> 
@@ -97,14 +72,27 @@ echo "<script>alert('Data not SUBMITED');</script>";
          <?php echo $errors['password'] ?? '' ?>
  </span>
     </div>
+    
+                  <!-- Picture -->
+                  <div class="mb-3"> 
+    <div class="input-group">
+  <input type="file" class="form-control" name="profile-pic"  aria-label="profile-pic"  aria-describedby="basic-addon2">
+  <span class="input-group-text" id="basic-addon2">Profile Picture</span> 
+</div>
+  <span class="text-danger" style="font-weight: 500">
+         <?php echo $errors['profile-pic'] ?? '' ?>
+ </span>
+    </div>
 
     <div class="d-grid gap-2 col-12">
-      <button type="submit" name="submit"  class="btn">SignUp</button>
+      <button type="submit" name="register"  class="btn">SignUp</button>
     </div>
 
 </form>
     </div>
+    </div>
   </div>
+  <?php include_once "footer.php" ?>
     <!-- Bootstrap JavaScript Libraries -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
 

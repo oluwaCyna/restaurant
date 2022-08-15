@@ -1,3 +1,6 @@
+<?php 
+session_start();
+include_once "redirect.php" ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,9 +18,10 @@
     </script>
     <script src="script.js" defer></script>
     <script src="https://checkout.flutterwave.com/v3.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js" defer></script>
 </head>
 
-<body onload="hideCheckout();">
+<body>
     <header class="" id="wrapper">
         <?php include_once "navigation.php" ?>
     </header>
@@ -55,7 +59,7 @@
                 <hr />
                 <br />
                 <div class="cart-action" id="cart-action">
-                <button type="submit" class="payment-btn" id="payment-btn" name="payment-btn" onclick="makePayment();">Pay Now</button>
+                <button type="submit" class="payment-btn" id="payment-btn" name="payment-btn">Pay Now</button>
                 </div>
 
             </div>
@@ -65,6 +69,7 @@
 
         </div>
     </div>
+    <?php include_once "footer.php" ?>
 </body>
 
 </html>

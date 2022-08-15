@@ -1,5 +1,4 @@
 <?php
-session_start();
 
 // LOGIN AND SIGNUP VALIDATION;
 class SignUp {
@@ -74,21 +73,23 @@ class SignUp {
 
     // LOGIN VALIDATION;
     class login {
-        private $data;
-        private $errors;
-        private static $fields = ['email','password'];
+        protected $data = [];
+        protected $errors;
+        protected static $fields = ['email','password'];
+        protected $login_email;
     
-        public function __construct($post_data){
+        public function senddata($post_data){
             $this->data = $post_data;
-        }
+            $this->login_email = $this->data['email'];
+                }
     
         public function validateform(){
-            foreach (self::$fields as $field) {
-            if (!array_key_exists($field, $this->data)) {
-                trigger_error("$field is not present in data");
-                return;
-            }
-            }
+            // foreach (self::$fields as $field) {
+            // if (!array_key_exists($field, $this->data)) {
+            //     trigger_error("$field is not present in data");
+            //     return;
+            // }
+            // }
         $this->validateEmail();
         $this->validatepassword();
         return $this->errors;
@@ -118,7 +119,6 @@ class SignUp {
 
     }  
       // END OF BOTH VALIDATION;
-    
 
   //  DATASE CONNECTION AND INSERTING START!;
   class Database extends SignUp
@@ -126,7 +126,7 @@ class SignUp {
       protected $host = "localhost";
       protected $root = "root";
       protected $password = "";
-      protected $dbase = "Food_App";
+      protected $dbase = "restaurant";
   
       public $conn_to = null;
 
@@ -139,10 +139,10 @@ class SignUp {
           //  echo "Connection Successful...!";
    }
   
-   public function insert($fname, $email, $phone, $password) {
-    if(!empty($fname) || !empty($email) || !empty($phone) || !empty($password)){
-                $InConn = mysqli_query($this->conn_to, "INSERT INTO regisration_info (fullname, email, phone, password) 
-                VALUES('$fname','$email', '$phone', '$password')");
+   public function insert($fname, $email, $phone, $profile_pic, $password) {
+    if(!empty($fname) || !empty($email) || !empty($phone) || !empty($password) || !empty($profile_pic)){
+                $InConn = mysqli_query($this->conn_to, "INSERT INTO user (fullname, email, phone_number, profile_pic, password) 
+                VALUES('$fname','$email', '$phone', '$profile_pic', '$password')");
                 return $InConn;
     } else {
         echo " ";
@@ -161,8 +161,7 @@ class LoginInfo extends login
     protected $host = "localhost";
     protected $root = "root";
     protected $password = "";
-    protected $dbase = "resturant";
-    
+    protected $dbase = "restaurant";
 
 
     public $conn_to = null;
@@ -177,19 +176,15 @@ class LoginInfo extends login
     }
 
     // // SELECTING USER INFOMATION FROM THE DATABASE;
-    // public function select()
-    // {
-    //     if(empty($val)){
-    //         echo " ";
-    //     } else {
-    //                 $UserQuery = "SELECT * FROM regisration_info";
-    //     $result = $this->conn_to->query($UserQuery);
-    //     if($result->num_rows > 0){
-    //         return $result; 
-    //     }else{
-    //         return false;
-    //     }
-    //     }
-
-    // }
+    public function select() {
+         $UserQuery = "SELECT * FROM user WHERE email = '$this->login_email'";
+        $result = $this->conn_to->query($UserQuery);
+        if($result->num_rows > 0){
+            return $result; 
+        }else{
+            return false;
+        }
+        }
 }
+
+  

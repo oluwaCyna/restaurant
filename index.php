@@ -284,61 +284,7 @@
             </div>
         </div>
     </section>
-
-    <footer>
-        <div class="container p-0" id="footer">
-            <div>
-                <h4>Main Menu</h4>
-                <p><a style=" text-decoration: none; color: white; font-weight: 700;"  href="market.php">Snacks</a> </p>
-                <p><a style=" text-decoration: none; color: white; font-weight: 700;"  href="market.php">Swallow</a> </p>
-                <p><a style=" text-decoration: none; color: white; font-weight: 700;"  href="market.php">Normal</a> </p>
-            </div>
-            <div>
-                <h4>Knowledgr Base</h4>
-                <p>Lorem ipsum </p>
-                <p>Lorem ipsum </p>
-                <p>Lorem ipsum </p>
-                <p>Lorem ipsum </p>
-                <p>Lorem ipsum </p>
-            </div>
-            <div>
-                <h4>Useful Links</h4>
-                <p><a style=" text-decoration: none; color: white; font-weight: 700;"  href="index.php">Home</a> </p>
-                <p><a style=" text-decoration: none; color: white; font-weight: 700;"  href="market.php">Market</a> </p>
-                <p><a style=" text-decoration: none; color: white; font-weight: 700;"  href="cart.php">Cart</a> </p>
-                <p><a style=" text-decoration: none; color: white; font-weight: 700;"  href="profile.php">Profile</a> </p>
-                <p><a style=" text-decoration: none; color: white; font-weight: 700;"  href="logout.php">Logout</a> </p>
-            </div>
-            <div>
-                <h4>Contact Us</h4>
-                <div class="details-flex">
-                    <i class="fa-solid fa-phone"></i>
-                    <p>+23481 3349 9101</p>
-                </div>
-                <div class="details-flex">
-                    <i class="fa-solid fa-envelope"></i>
-                    <p>info@gmail.com</p>
-                </div>
-                <div class="details-flex">
-                    <i class="fa-brands fa-facebook-f"></i>
-                    <i class="fa-brands fa-twitter"></i>
-                    <i class="fa-brands fa-google-plus-g"></i>
-                    <i class="fa-solid fa-apple-whole"></i>
-                </div>
-            </div>
-        </div>
-        <hr style="color: gray;">
-        <div class="container p-0" id="footer-note">
-            <p>Designed by oluwaCyna</p>
-            <div id="payment-icon">
-                <i class="fa-brands fa-cc-mastercard"></i>
-                <i class="fa-brands fa-cc-visa"></i>
-                <i class="fa-brands fa-paypal"></i>
-            </div>
-        </div>
-    </footer>
-    </div>
-    <script src="https://kit.fontawesome.com/b41ff46bee.js" crossorigin="anonymous"></script>
+    <?php include_once "footer.php" ?>
 </body>
 
 </html>

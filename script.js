@@ -1,6 +1,110 @@
+if (window.location.href.match('checkout.php')){
+window.addEventListener('load', hideCheckout);
+let userData = JSON.parse(sessionStorage.getItem('mydata'))
+document.getElementById("payment-btn").addEventListener('click', () => {
+  $tx_ref = "food-point-" + Math.floor(Math.random() * 999999999999999);
+  $order_name = Math.floor(Math.random() * 9999) + '-' + Math.floor(Math.random() * 9999) + '-' + Math.floor(Math.random() * 9999);
+  $amount = sessionStorage.getItem('cart-total-price');
+  $delivery_location = document.getElementById("search").value;
+
+  let eachItem = JSON.parse(localStorage.getItem('cart'))
+  for (let i = 0; i < eachItem.length; i++) {
+    eachItem[i]['order-name'] = $order_name;
+  }
+
+  /* FLUTTERWAVE CHECKOUT FUNCTION */
+  FlutterwaveCheckout({
+    public_key: "FLWPUBK_TEST-b81e1965b64a823fecfa2e5cef0783bd-X",
+    tx_ref: $tx_ref,
+    amount: $amount,
+    currency: "USD",
+    payment_options: "card",
+    callback: function (payment) {
+      if (payment.status === "successful") {
+        console.log(payment);
+      localStorage.setItem('payment', JSON.stringify(payment));
+        UpdateOrderDetails({
+        order_name: $order_name,
+        status: payment.status,
+        tx_ref: payment.tx_ref,
+        tx_id: payment.transaction_id
+        })
+        alert("Payment was successful")
+      };
+      SendEachProductDetails(eachItem)
+    },
+    onclose: function(incomplete) {
+      if (incomplete || window.verified === false) {
+          UpdateOrderDetails({
+            order_name: $order_name,
+            status: "failed",
+            tx_ref: "",
+            tx_id: "",
+            })
+        } else {
+          window.location.href = "account.php#order-history"
+        }
+    },
+    meta: {
+      user_id: userData.userId,
+      order_name: $order_name,
+      delivery_location: $delivery_location
+    },
+    customer: {
+      email: userData.email,
+      phone_number: userData.phoneNumber,
+      name: userData.name,
+    },
+    customizations: {
+      title: "The Food Point",
+      description: "Payment for food order",
+      logo: "https://i.ibb.co/gTBPJ48/logo.jpg",
+    },
+  });
+
+  SendOrderDetails({
+    user_id: userData.userId,
+    order_name: $order_name,
+    amount: $amount,
+    status: "pending",
+    delivery_location: $delivery_location
+  });
+})
+
+}
+
+function SendEachProductDetails (eachItem) {
+  axios.post('dataserver-each-product.php', eachItem)
+  .then(response => {
+    console.log(response);
+})
+.catch(error => {
+    console.log(error)
+})
+}
+
+function UpdateOrderDetails(updateData) {
+  axios.post('dataserver-update.php', updateData)
+  .then(response => {
+    console.log(response);
+})
+.catch(error => {
+    console.log(error)
+})
+}
+
+function SendOrderDetails(uploadData) {
+  axios.post('dataserver.php', uploadData)
+  .then(response => {
+    console.log(response);
+})
+.catch(error => {
+    console.log(error)
+})
+}
 function hideCheckout() {
   document.getElementById("payment-btn").style.display = "none";
-}
+
 let newCart = JSON.parse(localStorage.getItem('cart'));
 for (let i = 0; i < newCart.length; i++) {
   var checkoutContent = `
@@ -12,8 +116,18 @@ for (let i = 0; i < newCart.length; i++) {
   checkoutRow.classList.add('chackout-card')
   checkoutRow.innerHTML = checkoutContent
   document.getElementsByClassName('checkout-group-container')[0].append(checkoutRow)
-
 }
+}
+
+if (window.location.href.match('account.php')){
+  userData = {
+    userId: document.getElementById('details-id').value,
+    email: document.getElementById('details-email').innerText,
+    phoneNumber: document.getElementById('details-phone').innerText,
+    name: document.getElementById('details-fullname').innerText,
+    }
+    sessionStorage.setItem('mydata', JSON.stringify(userData));
+    }
 
 let searchBox;
 function initAutocomplete() {
@@ -60,14 +174,6 @@ document.getElementById("payment-btn").style.display = "block";
     scaledSize: new google.maps.Size(25, 25),
   };
 
-  // Create a marker for each place.
-  // const marker = new google.maps.Marker({
-  //   map,
-  //   icon,
-  //   title: place.name,
-  //   position: place.geometry.location,
-  //   draggable: true
-  // });
 
   var placeId = place.place_id;
   const geocoder = new google.maps.Geocoder();
@@ -81,9 +187,7 @@ document.getElementById("payment-btn").style.display = "block";
         draggable: true,
       });
 
-      console.log(results[0].formatted_address);
       google.maps.event.addListener(marker, "dragend", function () {
-        console.log(this.getPosition());
 
         const latlng = {
           lat: this.getPosition().lat(),
@@ -101,22 +205,14 @@ document.getElementById("payment-btn").style.display = "block";
                 draggable: true,
               });
               newMarker.setMap(null);
-
+              // Get Delivery Position
               document.getElementById("search").value =
                 response.results[0].formatted_address;
-              console.log(response.results[0].formatted_address);
             } else {
               window.alert("No results found");
             }
           })
           .catch((e) => window.alert("Geocoder failed due to: " + e));
-
-        //   map.setCenter(results[0].geometry.location);
-        // const marker = new google.maps.Marker({
-        //     map: map,
-        //     position: results[0].geometry.location,
-        //     draggable: true
-        // });
       });
     } else {
       alert("Geocode was not successful for the following reason: " + status);
@@ -124,8 +220,6 @@ document.getElementById("payment-btn").style.display = "block";
   });
 
   if (place.geometry.viewport) {
-    console.log(place.geometry.viewport);
-
     // Only geocodes have viewport.
     bounds.union(place.geometry.viewport);
   } else {
@@ -140,8 +234,8 @@ function directionRequest() {
   myDirection.route({}, initDirection());
 }
 
-function initDirection() {}
-function initMapp() {
+// function initDirection() {}
+function initMapp(location) {
   let directionsService = new google.maps.DirectionsService();
   let directionsRenderer = new google.maps.DirectionsRenderer();
 
@@ -154,9 +248,9 @@ function initMapp() {
 
   let mapp = new google.maps.Map(document.getElementById("map2"), mapOptions);
   directionsRenderer.setMap(mapp);
-
-  let start = "QGV8+8XQ, 230103, Osogbo, Nigeria";
-  let end = document.getElementById("search").value;
+// food point location
+  let start = "17 Adetoro Rd, 230103, Osogbo, Nigeria";
+  let end = location;
   var request = {
     origin: start,
     destination: end,
@@ -165,46 +259,57 @@ function initMapp() {
   directionsService.route(request, function (result, status) {
     if (status == "OK") {
       directionsRenderer.setDirections(result);
-      console.log(result);
-      console.log(result.routes[0].legs[0].distance.text);
-      console.log(result.routes[0].legs[0].duration.text);
-      console.log(result.routes[0].legs[0].end_address);
-      console.log(result.routes[0].legs[0].start_address);
+      document.getElementById("user-delivery-distance").innerText = result.routes[0].legs[0].distance.text;
+      document.getElementById("user-delivery-time").innerText = result.routes[0].legs[0].duration.text;
+      document.getElementById("user-delivery-location").innerText = result.routes[0].legs[0].end_address;
     }
   });
 }
 
+/* ORDER TRACKING */
+document.getElementById("user-order-number").addEventListener("change", () => {
+  let orderNumber = document.getElementById("user-order-number").value.trim();
 
-/* FLUTTERWAVE CHECKOUT FUNCTION */
-  function makePayment() {
-    FlutterwaveCheckout({
-      public_key: "FLWPUBK_TEST-SANDBOXDEMOKEY-X",
-      tx_ref: "titanic-48981487343MDI0NzMx",
-      amount: 54600,
-      currency: "NGN",
-      payment_options: "card, banktransfer, ussd",
-      redirect_url: "https://glaciers.titanic.com/handle-flutterwave-payment",
-      meta: {
-        consumer_id: 23,
-        consumer_mac: "92a3-912ba-1192a",
-      },
-      customer: {
-        email: "rose@unsinkableship.com",
-        phone_number: "08102909304",
-        name: "Rose DeWitt Bukater",
-      },
-      customizations: {
-        title: "The Food Point",
-        description: "Payment for tour order",
-        logo: "https://i.ibb.co/gTBPJ48/logo.jpg",
-      },
-    });
-  }
+document.getElementById("track-order-btn").addEventListener("click", trackingOrder);
 
+function trackingOrder() {
+  sendOrderNumber({number: orderNumber});
+}
+
+function sendOrderNumber(trackingData) {
+  axios.post('dataserver-tracking.php', trackingData)
+  .then(response => {
+    k=1;
+let productList = response.data.all_user_products_result;
+    for (let i = 0; i < productList.length; i++) {
+      var productListContent = `
+      <tr>
+           <td>${k++}</td>
+           <td>${productList[i].product_quantity}</td>
+           <td>${productList[i].product_title}</td>
+           <td>$${productList[i].product_price}</td>
+      </tr>`
+
+      var productListRow = document.createElement('tr')
+      productListRow.innerHTML = productListContent
+      document.getElementById('track-order-list').append(productListRow)
+    }
+ document.getElementById("user-total-amount").innerText = "$" + response.data.delivery_result.order_amount;
+ document.getElementById("order-name").innerText = response.data.delivery_result.order_name;
+ initMapp(response.data.delivery_result.delivery_location);
+
+})
+.catch(error => {
+    console.log(error)
+})
+}
+});
 
   /* MY ACCOUNT PAGE */
   function showProfile() {
+    showLoader()
     document.getElementById("account-title").innerText = "My Profile";
+    // document.getElementById("account-page").style.display = "block";
     document.getElementById("profile").style.display = "block";
     document.getElementById("update-profile").style.display = "none";
     document.getElementById("order-history").style.display = "none";
@@ -212,6 +317,7 @@ function initMapp() {
   }
 
   function showUpdateProfile() {
+    showLoader()
     document.getElementById("account-title").innerText = "Update Profile";
     document.getElementById("profile").style.display = "none";
     document.getElementById("update-profile").style.display = "block";
@@ -220,6 +326,7 @@ function initMapp() {
   }
 
   function showOrderHistory() {
+    showLoader()
     document.getElementById("account-title").innerText = "Order History";
     document.getElementById("profile").style.display = "none";
     document.getElementById("update-profile").style.display = "none";
@@ -228,6 +335,7 @@ function initMapp() {
   }
 
   function showTrackOrder() {
+    showLoader()
     document.getElementById("account-title").innerText = "Track Order";
     document.getElementById("profile").style.display = "none";
     document.getElementById("update-profile").style.display = "none";
@@ -235,8 +343,18 @@ function initMapp() {
     document.getElementById("track-order").style.display = "block";
   }
 
+  function showLoader() {
+    document.getElementById("loader").style.display = "block";
+    document.getElementById("bk").style.display = "block";
+    setTimeout( () => {
+      document.getElementById("loader").style.display = "none";
+      document.getElementById("bk").style.display = "none";
+    }, 500)
+    
+  }
   /* ADMIN DASHBOARD PAGE */
   function showFoodPoint() {
+    
     document.getElementById("admin-title").innerText = "Dashboard";
     document.getElementById("food-point").style.display = "block";
     document.getElementById("upload-product").style.display = "none";
@@ -375,7 +493,7 @@ function ready() {
 let cartList = [];
 
 function purchaseClicked() {
-  // alert('Thank you for your purchase')
+
   var cartFinalItems = document.getElementsByClassName('cart-group')[0]
   var cartFinalRows = cartFinalItems.getElementsByClassName('cart-card')
   for (var i = 0; i < cartFinalRows.length; i++) {
@@ -395,23 +513,12 @@ function purchaseClicked() {
   localStorage.setItem('cart', JSON.stringify(cartList));
 
   window.location.href = "/delivery/checkout.php";
-  while (cartFinalItems.hasChildNodes()) {
-      cartFinalItems.removeChild(cartFinalItems.firstChild)
-  }
+  // while (cartFinalItems.hasChildNodes()) {
+  //     cartFinalItems.removeChild(cartFinalItems.firstChild)
+  // }
   updateCartTotal()
 }
 
-// function sendToCheckout(data) {
-//   var checkoutContent = `
-//   <h5>You want to check out the following</h5>
-//   <div class="checkout-card" index="${item.id}">
-//     <h6>${item.quantity}</h6>
-//     <h6>${item.name}</h6>
-//     <h6>${item.price}</h6>
-//   </div>`
-//   document.getElementsByClassName('checkout-group-container')[0].innerHTML =  data.forEach(item => {checkoutContent})
-// }
-// console.log(cartList)
 
 function removeCartItem(event) {
   var buttonClicked = event.target
@@ -482,4 +589,8 @@ function updateCartTotal() {
   }
   total = Math.round(total * 100) / 100
   document.getElementsByClassName('cart-total-price')[0].innerText = '$' + total
+
+  sessionStorage.setItem('cart-total-price', total)
 }
+
+
