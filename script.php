@@ -1,6 +1,6 @@
 <?php 
-session_start();
 include_once "connection.php";
+session_start();
 
 // PRODUCT UPLOAD
 class ProductUploader extends Dbconnect {
@@ -28,7 +28,16 @@ $product_upload->productUpload($_POST['product-name'], $file_name, $_POST['produ
 class Product extends Dbconnect{ 
 
     public function all_product(){
-        $select_query = "SELECT * FROM product";
+        $select_query = "SELECT * FROM product ORDER BY RAND()";
+        $select_query_run = mysqli_query($this->conn, $select_query);
+        if ($select_query_run->num_rows > 0) {
+            $result = $select_query_run->fetch_all(MYSQLI_ASSOC);
+            return $result;
+        } 
+    }
+
+    public function rand_product(){
+        $select_query = "SELECT * FROM product ORDER BY RAND() LIMIT 8";
         $select_query_run = mysqli_query($this->conn, $select_query);
         if ($select_query_run->num_rows > 0) {
             $result = $select_query_run->fetch_all(MYSQLI_ASSOC);

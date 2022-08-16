@@ -113,8 +113,8 @@
     <section class="" id="category">
         <div class="container">
             <div class="section-head-container">
-                <h6>OUR TOP MEALS</h6>
-                <h2>Delecious Meals</h2>
+                <h6>OUR TOP PRODUCTS</h6>
+                <h2>Looks Delecious</h2>
                 <div class="line-group">
                     <hr class="line" />
                     <hr class="line2" />
@@ -123,89 +123,7 @@
                 </div>
             </div>
             <div class="meal-list">
-                <div class="meal-card" id="">
-                    <div class="meal-card-image">
-                        <div class="meal-card-div"></div>
-                        <div class="meal-card-div2"></div>
-                        <div class="meal-card-div3"></div>
-                        <img src="https://marketplace.foodotawp.com/wp-content/uploads/2021/05/Layer256-1.png" height="150" width="150" alt="Category Image" />
-                    </div>
-                    <div class="meal-card-text">
-                        <p>star rating</p>
-                        <h6>Category Name</h6>
-                        <p><s>$300</s> $700</p>
-                    </div>
-                </div>
-
-                <div class="meal-card" id="">
-                    <div class="meal-card-image">
-                        <div class="meal-card-div"></div>
-                        <div class="meal-card-div2"></div>
-                        <div class="meal-card-div3"></div>
-                        <img src="https://marketplace.foodotawp.com/wp-content/uploads/2021/05/Layer256-1.png" height="150" width="150" alt="Category Image" />
-                    </div>
-                    <div class="meal-card-text">
-                        <p>star rating</p>
-                        <h6>Category Name</h6>
-                        <p><s>$300</s> $700</p>
-                    </div>
-                </div>
-
-                <div class="meal-card" id="">
-                    <div class="meal-card-image">
-                        <div class="meal-card-div"></div>
-                        <div class="meal-card-div2"></div>
-                        <div class="meal-card-div3"></div>
-                        <img src="https://marketplace.foodotawp.com/wp-content/uploads/2021/05/Layer256-1.png" height="150" width="150" alt="Category Image" />
-                    </div>
-                    <div class="meal-card-text">
-                        <p>star rating</p>
-                        <h6>Category Name</h6>
-                        <p><s>$300</s> $700</p>
-                    </div>
-                </div>
-
-                <div class="meal-card" id="">
-                    <div class="meal-card-image">
-                        <div class="meal-card-div"></div>
-                        <div class="meal-card-div2"></div>
-                        <div class="meal-card-div3"></div>
-                        <img src="https://marketplace.foodotawp.com/wp-content/uploads/2021/05/Layer256-1.png" height="150" width="150" alt="Category Image" />
-                    </div>
-                    <div class="meal-card-text">
-                        <p>star rating</p>
-                        <h6>Category Name</h6>
-                        <p><s>$300</s> $700</p>
-                    </div>
-                </div>
-
-                <div class="meal-card" id="">
-                    <div class="meal-card-image">
-                        <div class="meal-card-div"></div>
-                        <div class="meal-card-div2"></div>
-                        <div class="meal-card-div3"></div>
-                        <img src="https://marketplace.foodotawp.com/wp-content/uploads/2021/05/Layer256-1.png" height="150" width="150" alt="Category Image" />
-                    </div>
-                    <div class="meal-card-text">
-                        <p>star rating</p>
-                        <h6>Category Name</h6>
-                        <p><s>$300</s> $700</p>
-                    </div>
-                </div>
-
-                <div class="meal-card" id="">
-                    <div class="meal-card-image">
-                        <div class="meal-card-div"></div>
-                        <div class="meal-card-div2"></div>
-                        <div class="meal-card-div3"></div>
-                        <img src="https://marketplace.foodotawp.com/wp-content/uploads/2021/05/Layer256-1.png" height="150" width="150" alt="Category Image" />
-                    </div>
-                    <div class="meal-card-text">
-                        <p>star rating</p>
-                        <h6>Category Name</h6>
-                        <p><s>$300</s> $700</p>
-                    </div>
-                </div>
+                <?php include_once "meal.php"?>
             </div>
         </div>
     </section>

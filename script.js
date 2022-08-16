@@ -267,6 +267,7 @@ function initMapp(location) {
 }
 
 /* ORDER TRACKING */
+// if (window.location.href.match('account.php#track-order')){
 document.getElementById("user-order-number").addEventListener("change", () => {
   let orderNumber = document.getElementById("user-order-number").value.trim();
 
@@ -304,7 +305,7 @@ let productList = response.data.all_user_products_result;
 })
 }
 });
-
+// }
   /* MY ACCOUNT PAGE */
   function showProfile() {
     showLoader()
@@ -349,7 +350,7 @@ let productList = response.data.all_user_products_result;
     setTimeout( () => {
       document.getElementById("loader").style.display = "none";
       document.getElementById("bk").style.display = "none";
-    }, 500)
+    }, 1000)
     
   }
   /* ADMIN DASHBOARD PAGE */
